@@ -22,6 +22,10 @@
       .board {
         height: 100vh;
       }
+      body {
+ background-image: url("https://64.media.tumblr.com/ad04c1937e103e2edbd95ddd31a84ae0/cc5d2e989c9bae95-ac/s500x750/164b3a093b26eb570e24ef0be1a5be8a0896c798.gif");
+      }
+ 
     </style>
     <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   </head>
@@ -42,10 +46,14 @@
         var box = jQuery(".box"); // reference to the HTML .box element
         var board = jQuery(".board"); // reference to the HTML .board element
         var boardWidth = board.width(); // the maximum X-Coordinate of the screen
-
+        var boardHeight = board.height();
+        var boardHeight = jQuery(window).height();
         // update the boardWidth variable when the window is resized
         jQuery(window).on("resize", function () {
           boardWidth = board.width();
+        });
+        jQuery(window).on("resize", function () {
+          boardHeight = board.height();
         });
 
         // Every 50 milliseconds, call the update Function (see below)
@@ -55,9 +63,10 @@
         box.on("click", handleBoxClick);
 
         // moves the Box to a new position on the screen along the X-Axis
-        function moveBoxTo(newPositionX) {
+        function moveBoxTo(newPositionX, newPositionY) {
           box.css("left", newPositionX);
-        }
+          box.css("top", newPositionY);
+        } 
 
         // changes the text displayed on the Box
         function changeBoxText(newText) {
@@ -70,9 +79,11 @@
 
         // TODO 2 - Variable declarations
 var positionX = 0;
+
 var points = 0;
 var speed = 10;
-
+var positionY = 10;
+var speedY = 10;
 
 
         /**
@@ -84,11 +95,20 @@ var speed = 10;
 moveBoxTo(boardWidth);
         positionX += speed;
         moveBoxTo(positionX);
-        if (positionX > boardWidth) speed *= -1
+        if (positionX > boardWidth){
+           speed *= -1}
+else if (positionX < 0 ) {speed *= -1 }
 
-          
+     
         }
-
+     
+positionY += speedY;
+// moveBoxTo(positionY);
+if (positionY> boardHeight){
+ speedY *= -1
+}
+else if (positionY< 0){ speedY *= -1}
+       
         /**
          * This Function will be called each time the box is clicked.
          * Each time it is called, it should perform each of the following actions:
@@ -100,7 +120,13 @@ moveBoxTo(boardWidth);
 positionX = 0
 changeBoxText(points)
 points++;
-speed += 3
+speed = 3 * points * 10
+
+
+
+
+
+
 
 
         }
