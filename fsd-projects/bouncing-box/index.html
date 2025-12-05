@@ -21,10 +21,14 @@
 
       .board {
         height: 100vh;
+        
       }
       body {
  background-image: url("https://64.media.tumblr.com/ad04c1937e103e2edbd95ddd31a84ae0/cc5d2e989c9bae95-ac/s500x750/164b3a093b26eb570e24ef0be1a5be8a0896c798.gif");
-      }
+     height: "2000px"
+     width: "1000px"
+}
+    
  
     </style>
     <!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -51,10 +55,9 @@
         // update the boardWidth variable when the window is resized
         jQuery(window).on("resize", function () {
           boardWidth = board.width();
-        });
-        jQuery(window).on("resize", function () {
           boardHeight = board.height();
         });
+        
 
         // Every 50 milliseconds, call the update Function (see below)
         setInterval(update, 50);

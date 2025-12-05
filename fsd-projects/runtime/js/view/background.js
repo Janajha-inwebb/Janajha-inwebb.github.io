@@ -29,8 +29,8 @@ var background = function (window) {
         // ANIMATION VARIABLES HERE //////////////////////////////////////
         //////////////////////////////////////////////////////////////////
         // TODO (several):
-      var tree
-      var buliding = []
+      var tree;
+      var buildings = []
         // called at the start of game and whenever the page is resized
         // add objects for display in background. draws each image added to the background once
         function render() {
@@ -44,6 +44,11 @@ var background = function (window) {
             background.addChild(backgroundFill);
             
             // TODO 2: - Add a moon and starfield
+var nightbg = draw.bitmap("img/nightbg.webp");
+nightbg.scaleX = 2
+nightbg.scaleY = 2;
+background.addChild(nightbg);
+
             var moon = draw.bitmap("img/moon.png");
 moon.x = 1000;
 moon.y = 1;
@@ -87,7 +92,7 @@ background.addChild(circle);
   building.x = 200 * i;
   building.y = groundY - buildingHeight;
   background.addChild(building);
-  //buildings.push(building);
+  buildings.push(building);
 }
             
             // TODO 3: Part 1 - Add a tree
@@ -115,7 +120,13 @@ background.addChild(tree);
 }
             
             // TODO 4: Part 2 - Parallax
-            
+            for (var i = 0; i < buildings.length; i++) {
+                var eachElement = buildings[i];
+                eachElement.x = eachElement.x - 3
+                if (eachElement.x < -100) {
+                    eachElement.x = canvasWidth;
+                }
+            }
 
         } // end of update function - DO NOT DELETE
         
